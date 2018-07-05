@@ -240,6 +240,8 @@ This mode can be used when you have a good map of your working area. In this mod
 
 # Run in Docker
 
+Tested in Ubuntu 14.04.5, Docker 18.03.1-ce, nvidia-docker 2.0, GeForce GTX-960.
+
 An X-server must be running in the host system, and permission for connections must be granted.
 For more secure configurations, see [this tutorial](http://wiki.ros.org/docker/Tutorials/GUI#Using_X_server).
 
@@ -250,7 +252,7 @@ into a local folder, e.g. `/DATA/ORB_SLAM2/`.
 $ docker run -it --rm --env="DISPLAY" --env="QT_X11_NO_MITSHM=1" \
 --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
 --volume="/DATA:/DATA:ro" \
---runtime nvidia orb_slam2
+--runtime=nvidia orb_slam2
 root@e7bf3517a108:/opt/ORB_SLAM2# ./Examples/Monocular/mono_tum \
 Vocabulary/ORBvoc.txt Examples/Monocular/TUM1.yaml \
 /DATA/ORB_SLAM2/rgbd_dataset_freiburg1_desk/
