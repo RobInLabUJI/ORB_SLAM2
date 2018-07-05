@@ -1,14 +1,20 @@
-FROM ubuntu:16.04
+FROM nvidia/opengl:1.0-glvnd-devel-ubuntu16.04
 
 # Get dependencies
 RUN apt-get update && apt-get install -y \
-    libglew-dev \
+	libglew-dev \
 	libeigen3-dev \
-    libopencv-dev \
+	libopencv-dev \
 	cmake git wget \
 	&& apt-get clean \ 
 	&& rm -rf /var/lib/apt/lists/
 	
+RUN apt-get update && apt-get install -y \
+	g++ \
+	&& apt-get clean \ 
+	&& rm -rf /var/lib/apt/lists/
+
+
 RUN cd /opt && git clone https://github.com/stevenlovegrove/Pangolin.git \
 	&& cd Pangolin && mkdir build && cd build && cmake  .. \
 	&& make -j4 && make install
