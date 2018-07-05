@@ -251,5 +251,7 @@ $ docker run -it --rm --env="DISPLAY" --env="QT_X11_NO_MITSHM=1" \
 --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
 --volume="/DATA:/DATA:ro" \
 --runtime nvidia orb_slam2
-root@e7bf3517a108:/opt/ORB_SLAM2# ./Examples/Monocular/mono_tum Vocabulary/ORBvoc.txt Examples/Monocular/TUM1.yaml /DATA/ORB_SLAM2/rgbd_dataset_freiburg1_desk/
+root@e7bf3517a108:/opt/ORB_SLAM2# ./Examples/Monocular/mono_tum \
+Vocabulary/ORBvoc.txt Examples/Monocular/TUM1.yaml \
+/DATA/ORB_SLAM2/rgbd_dataset_freiburg1_desk/
 ```
