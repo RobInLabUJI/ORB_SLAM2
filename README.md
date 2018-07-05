@@ -238,3 +238,18 @@ This is the default mode. The system runs in parallal three threads: Tracking, L
 ### Localization Mode
 This mode can be used when you have a good map of your working area. In this mode the Local Mapping and Loop Closing are deactivated. The system localizes the camera in the map (which is no longer updated), using relocalization if needed. 
 
+# Run in Docker
+
+An X-server must be running in the host system, and permission for connections must be granted.
+For more secure configurations, see [this tutorial](http://wiki.ros.org/docker/Tutorials/GUI#Using_X_server).
+
+Download [an example rosbag file](https://vision.in.tum.de/rgbd/dataset/freiburg1/rgbd_dataset_freiburg1_desk.tgz)(0.36 GB) 
+into a local folder, e.g. `/DATA/ORB_SLAM2/`.
+
+```
+$ docker run -it --rm --env="DISPLAY" --env="QT_X11_NO_MITSHM=1" \
+--volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
+--volume="/DATA:/DATA:ro" \
+--runtime nvidia orb_slam2
+root@e7bf3517a108:/opt/ORB_SLAM2# ./Examples/Monocular/mono_tum Vocabulary/ORBvoc.txt Examples/Monocular/TUM1.yaml /DATA/ORB_SLAM2/rgbd_dataset_freiburg1_desk/
+```
